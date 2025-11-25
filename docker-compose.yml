@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    image: luminigianniacr.azurecr.io/luminiflash-backend:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    networks:
+      - app-network
+
+  frontend:
+    image: luminigianniacr.azurecr.io/luminiflash-frontend:latest
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

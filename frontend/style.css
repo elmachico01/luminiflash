@@ -1,0 +1,280 @@
+/* --- RESET E BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #131314; 
+    color: #e3e3e3;
+    font-family: 'Inter', sans-serif;
+    /* 14px: Lo standard "Pro". 
+       Compatto, leggibile, identico su ogni browser. */
+    font-size: 14px; 
+    height: 100vh;
+    height: 100dvh; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* FIX ICONE CHROME */
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* --- HEADER --- */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Padding molto sottile */
+    padding: 15px 25px; 
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, #131314 90%, transparent);
+    z-index: 20;
+    flex-shrink: 0;
+}
+
+.header-content {
+    width: 100%;
+    /* Allineato alla colonna chat stretta */
+    max-width: 900px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 18px; /* Logo piccolo e discreto */
+    font-weight: 800; 
+    background: linear-gradient(90deg, #8ab4f8, #c58af9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.3px;
+    filter: drop-shadow(0 0 10px rgba(138, 180, 248, 0.15));
+}
+
+.save-btn {
+    background: #282a2c;
+    border: 1px solid #3c4043; 
+    color: #e3e3e3;
+    padding: 6px 14px; /* Bottone mini */
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px; 
+    font-weight: 600;
+    transition: all 0.2s;
+    z-index: 30;
+}
+.save-btn:hover { background: #3c4043; border-color: #888; transform: scale(1.02); }
+.save-btn .material-symbols-rounded { font-size: 16px; }
+
+/* --- CHAT AREA --- */
+main#chat-box {
+    flex: 1; 
+    overflow-y: auto; 
+    /* Spazio ottimizzato al millimetro */
+    padding: 70px 20px 20px 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Messaggi vicini */
+    width: 100%;
+    /* COLONNA MOLTO STRETTA E LEGGIBILE */
+    max-width: 900px; 
+    margin: 0 auto;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+main#chat-box::after {
+    content: "";
+    display: block;
+    height: 70px; 
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* MESSAGGI */
+.message {
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    line-height: 1.5;
+    /* 14px: Nitido e professionale */
+    font-size: 14px; 
+    max-width: 100%;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+.message.user { justify-content: flex-end; }
+.message.bot { justify-content: flex-start; }
+
+.avatar {
+    width: 32px; /* Avatar 32px (Standard Slack/Discord) */
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+}
+.bot .avatar { background: linear-gradient(135deg, #4285f4, #9b72cb); color: white; }
+.avatar .material-symbols-rounded { font-size: 16px; }
+
+.content {
+    padding: 8px 16px; 
+    border-radius: 14px;
+    max-width: 92%; 
+    word-wrap: break-word;
+}
+
+.user .content {
+    background-color: #2b2c2e;
+    color: #fff;
+    border-bottom-right-radius: 3px;
+}
+
+.bot .content {
+    background-color: transparent;
+    padding-left: 0;
+    padding-top: 4px;
+}
+
+.bot .content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* --- FOOTER --- */
+footer {
+    flex-shrink: 0; 
+    width: 100%;
+    background-color: #131314; 
+    padding: 10px 0 25px 0; 
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px; 
+}
+
+/* BARRA DI INPUT: SUPER COMPATTA */
+.input-wrapper {
+    width: 100%;
+    /* 680px: La dimensione perfetta per il focus */
+    max-width: 680px; 
+    background-color: #1e1f20;
+    border-radius: 50px; 
+    padding: 6px 16px; 
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    border: 1px solid #333; 
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.input-wrapper:focus-within {
+    border-color: #666; 
+    background-color: #252628;
+}
+
+textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    /* 14px FISSO */
+    font-size: 14px; 
+    resize: none;
+    max-height: 180px;
+    padding: 6px 0; 
+    outline: none;
+    line-height: 1.4;
+}
+
+textarea::placeholder { 
+    color: #888; 
+    font-size: 14px;
+}
+
+.icon-btn {
+    background: #2a2b2e;
+    border: none;
+    color: #e3e3e3;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.icon-btn:hover { background-color: #444; transform: scale(1.05); }
+.icon-btn .material-symbols-rounded { font-size: 16px; }
+
+.send { background-color: #e3e3e3; color: #131314; }
+.send:hover { background-color: #fff; }
+
+.footer-info {
+    font-size: 11px; /* Info minuscola */
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* --- PREVIEW --- */
+#preview-area.hidden { display: none; }
+.preview-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+    background: #1e1f20;
+    padding: 8px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 1px solid #444;
+}
+#img-preview { height: 90px; border-radius: 6px; display: block; }
+.close-preview {
+    position: absolute; top: -8px; right: -8px;
+    background: #444; color: white;
+    border: 2px solid #1e1f20;
+    border-radius: 50%; width: 24px; height: 24px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.close-preview .material-symbols-rounded { font-size: 14px; }

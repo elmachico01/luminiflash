@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUMINI Flash</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <span class="logo">LUMINI 2.5</span>
+            <button class="save-btn" onclick="downloadChat()" title="Guardar conversación">
+                <span class="material-symbols-rounded">save</span>
+                <span>Guardar Chat</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="chat-box">
+        <div class="message bot">
+            <div class="avatar">
+                <span class="material-symbols-rounded">smart_toy</span>
+            </div>
+            <div class="content">
+                ¡Hola! Soy Lumini. 
+                <br>¡Sube una imagen o escríbeme algo!
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="input-container">
+            <div id="preview-area" class="hidden">
+                <div class="preview-wrapper">
+                    <img id="img-preview" src="">
+                    <button class="close-preview" onclick="removeImage()">
+                        <span class="material-symbols-rounded">close</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="file" id="file-input" hidden accept="image/*">
+                
+                <button class="icon-btn attach" onclick="document.getElementById('file-input').click()">
+                    <span class="material-symbols-rounded">add_photo_alternate</span>
+                </button>
+
+                <textarea id="user-input" placeholder="Pregunta a Lumini..."></textarea>
+                
+                <button class="icon-btn send" onclick="sendMessage()">
+                    <span class="material-symbols-rounded">arrow_upward</span>
+                </button>
+            </div>
+            <div class="footer-info">LUMINI puede cometer errores. Verifica la información importante.</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
